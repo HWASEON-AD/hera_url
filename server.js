@@ -239,6 +239,26 @@ app.get('/api/me', (req, res) => {
   else res.status(401).json({ success: false, message: '로그인 필요', isAuthenticated: false });
 });
 
+app.get('/api/admin/auth', (req, res) => {
+  const user = req.session.user;
+
+  if (!user) {
+    return res.status(401).json({
+      success: false,
+      isAuthenticated: false,
+      isAdmin: false
+    });
+  }
+
+  res.json({
+    success: true,
+    isAuthenticated: true,
+    isAdmin: !!user.isAdmin,
+    user
+  });
+});
+
+
 /** 관리자 사용자 목록 */
 app.get('/api/admin/users', (req, res) => {
   if (!ensureAdmin(req, res)) return;
