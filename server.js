@@ -25,7 +25,7 @@ const BACKUPS_DIR = path.join(DATA_DIR, 'backups');
 /** =========================
  *  보안/관리자 설정 (환경변수 지원)
  *  ========================= */
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'hwaseon@00';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'hera@00';
 const ADMIN_KEY = process.env.ADMIN_KEY || 'hwaseon-admin-key';
 
 /** =========================
@@ -201,7 +201,7 @@ app.get('/admin', (req, res) => {
 app.post('/api/admin/login', (req, res) => {
   const { password } = req.body || {};
   if (password !== ADMIN_PASSWORD) return res.status(401).json({ success: false, message: '비밀번호 불일치' });
-  const adminUser = { id: 'admin', username: '장혜승', email: 'gt.min@hawseon.com', isAdmin: true };
+  const adminUser = { id: 'admin', username: '김성은', email: 'gt.min@hawseon.com', isAdmin: true };
   req.session.user = adminUser;
   req.session.save(err => {
     if (err) return res.status(500).json({ success: false, message: '세션 저장 오류' });
